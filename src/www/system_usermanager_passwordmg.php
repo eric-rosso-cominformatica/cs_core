@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $otp_url = "otpauth://totp/";
             $otp_url .= $username."@".htmlspecialchars($config['system']['hostname'])."?secret=";
             $otp_url .= $new_seed;
-            $otp_url .= "&issuer=OPNsense";
-            $otp_url .= "&image=https://docs.opnsense.org/_static/favicon.png";
+            $otp_url .= "&issuer=.Com Security";
+            $otp_url .= "&image=https://docs.comsecurity.com/_static/favicon.png";
             echo json_encode([
               "otp_seed" => $new_seed ,
               "otp_seed_url" => $otp_url,
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (!$userFound) {
                 $input_errors[] = gettext("Sorry, you cannot change settings for a non-local user.");
             } elseif (count($input_errors) == 0) {
-                $authenticator = (new OPNsense\Auth\AuthenticationFactory())->get('Local Database');
+                $authenticator = (new ComSecurity\Auth\AuthenticationFactory())->get('Local Database');
                 $input_errors = $authenticator->checkPolicy($username, $pconfig['passwordfld0'], $pconfig['passwordfld1']);
             }
         }

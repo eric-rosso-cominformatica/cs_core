@@ -112,12 +112,12 @@ CORE_PKGVERSION=	${CORE_VERSION}
 CORE_PYTHON_DOT=	${CORE_PYTHON:C/./&./1}
 
 CORE_COMMENT?=		${CORE_PRODUCT} ${CORE_TYPE} release
-CORE_MAINTAINER?=	project@opnsense.org
-CORE_ORIGIN?=		opnsense/${CORE_NAME}
-CORE_PACKAGESITE?=	https://pkg.opnsense.org
-CORE_PRODUCT?=		OPNsense
+CORE_MAINTAINER?=	project@comsecurity.com
+CORE_ORIGIN?=		comsecurity/${CORE_NAME}
+CORE_PACKAGESITE?=	https://pkg.comsecurity.com
+CORE_PRODUCT?=		.Com Security
 CORE_REPOSITORY?=	${CORE_ABI}/latest
-CORE_WWW?=		https://opnsense.org/
+CORE_WWW?=		https://comsecurity.com/
 CORE_USER?=		wwwonly
 CORE_UID?=		789
 CORE_GROUP?=		${CORE_USER}
@@ -157,10 +157,10 @@ CORE_DEPENDS?=		ca_root_nss \
 			ntp \
 			openssh-portable \
 			openvpn \
-			opnsense-installer \
-			opnsense-lang \
-			opnsense-update \
-			pam_opnsense \
+			comsecurity-installer \
+			comsecurity-lang \
+			comsecurity-update \
+			pam_comsecurity \
 			pftop \
 			php${CORE_PHP}-ctype \
 			php${CORE_PHP}-curl \
@@ -282,9 +282,9 @@ scripts:
 install:
 	@${CORE_MAKE} -C ${.CURDIR}/contrib install DESTDIR=${DESTDIR}
 	@${CORE_MAKE} -C ${.CURDIR}/src install DESTDIR=${DESTDIR} ${MAKE_REPLACE}
-.if exists(${LOCALBASE}/opnsense/www/index.php)
+.if exists(${LOCALBASE}/comsecurity/www/index.php)
 	# try to update the current system if it looks like one
-	@touch ${LOCALBASE}/opnsense/www/index.php
+	@touch ${LOCALBASE}/comsecurity/www/index.php
 	@${PLUGINCTL} -cq cache_flush
 .endif
 
@@ -364,7 +364,7 @@ validate:
 	@${PLUGINCTL} -v
 
 # XXX we should stop treating AclConfig dir as the test's actual /conf dir
-TEST_NO_CLOBBER=	${TESTDIR}/app/models/OPNsense/ACL/AclConfig/config.xml
+TEST_NO_CLOBBER=	${TESTDIR}/app/models/ComSecurity/ACL/AclConfig/config.xml
 
 test:
 .if exists(${TESTDIR})

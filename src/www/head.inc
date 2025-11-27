@@ -1,7 +1,7 @@
 <?php
 
 // link menu system
-$menu = new OPNsense\Base\Menu\MenuSystem();
+$menu = new ComSecurity\Base\Menu\MenuSystem();
 /* XXX generating breadcrumbs requires getItems() call */
 $menuSystem = $menu->getItems($_SERVER['REQUEST_URI']);
 $menuBreadcrumbs = $menu->getBreadcrumbs();
@@ -97,7 +97,7 @@ $pagetitle .= html_safe(sprintf(' | %s.%s', $config['system']['hostname'], $conf
     <script src="<?= cache_safe("/ui/js/nv.d3.min.js") ?>"></script>
 
     <!-- append some helper functions to integrate into the legacy code -->
-    <script src="<?= cache_safe("/javascript/opnsense_legacy.js") ?>"></script>
+    <script src="<?= cache_safe("/javascript/comsecurity_legacy.js") ?>"></script>
 
     <!-- opnsense non legacy helper functions -->
     <script src="<?= cache_safe("/ui/js/opnsense.js") ?>"></script>
@@ -245,7 +245,7 @@ $pagetitle .= html_safe(sprintf(' | %s.%s', $config['system']['hostname'], $conf
           $("#system_status").show();
       });
       // convert input form tables for better mobile experience
-      hook_stacked_form_tables(".opnsense_standard_table_form");
+      hook_stacked_form_tables(".comsecurity_standard_table_form");
     });
     //]]>
     </script>
